@@ -1,44 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
-
+ 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejemplo Web - Horario</title>
+    <title>Práctica SISIN </title>
     <link rel="stylesheet" href="frontend/css/app.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-
+ 
 <body>
-
-    <h1>Práctica SISIN - Tema 7</h1>
-
-    
-
-    
+    <h1>Práctica SISIN - Tema 7 - Sergio Martínez Castaño</h1>
+    <table id="profesoresTable" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>idProfesor</th>
+                <th>nombre</th>
+                <th>apellido</th>
+                <th>edad</th>
+                <th>salario</th>
+                <th>departamento</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+ 
+ 
+ 
+ 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-
-        const urlObtenerHorario = ''
-
-        // Llamar a la función obtenerHorario para cargar la lista de Módulos Profesionales al cargar la página web
-        obtenerHorario()
-
+        const urlObtenerHorarios = 'backend/conexionBBDD.php';
+ 
+        // Llamar a la función obtenerHorarios para cargar la lista de Módulos Profesionales al cargar la página web
+        obtenerHorarios();
+ 
         // Función asíncrona para obtener la lista de empleados
-        async function obtenerHorario() {
+        async function obtenerHorarios() {
             try {
                 // Obtener la lista de empleados del backend
-                const horario = await fetch(urlObtenerHorario)
+                const horarios = await fetch(urlObtenerHorarios)
                     .then(respuesta => respuesta.json());
-
-                // Renderizar el horario aquí...
-                
+ 
+                // Renderizar el horario en la tabla
+                const tbody = document.querySelector('#profesoresTable tbody');
+                horarios.forEach(horario => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${horario.idProfesor}</td>
+                        <td>${horario.nombre}</td>
+                        <td>${horario.apellido}</td>
+                        <td>${horario.edad}</td>
+                        <td>${horario.salario}</td>
+                        <td>${horario.departamento}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+ 
             } catch (error) {
                 console.log(error);
             }
-
+ 
         }
-
     </script>
-
+ 
 </body>
-
+ 
 </html>
