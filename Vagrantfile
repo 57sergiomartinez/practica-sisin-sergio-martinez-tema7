@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
 
       # Instalación de los binarios de PHP, el driver mysqli y la extensión FPM para realizar peticiones de tipo RESTful
-
+      sudo apt-get install -y php php-mysqli
 
       # Generar archivo SQL con los registros de los diferentes Módulos Profesionales
       echo "-- Insertar datos en la lista 'profesores'" > /home/vagrant/datos_profesores.sql
