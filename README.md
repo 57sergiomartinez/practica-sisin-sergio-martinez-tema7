@@ -1,6 +1,6 @@
 # Práctica del Tema 7 - EXPLOTACIÓN DE APLICACIONES INFORMÁTICAS
 
-**Autor** : 
+**Autor** Sergio Martinez Castaño: 
 
 1. Instalamos mysql-server en el servidor virtual (`sudo apt install mysql-server`).
 
